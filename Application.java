@@ -24,7 +24,6 @@ class Application{
 				case 4 : r.exec("cmd.exe");	System.out.println("It might not open");	break;
 				case 5 :
 					String path = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
-					String architecture = System.getProperty("os arch");
 					try {
 						r.exec(path);
 					}
