@@ -21,7 +21,7 @@ class Application{
 				case 1 : r.exec("notepad.exe"); break;	// To open NotePad in Window
 				case 2 : r.exec("C:\\Program Files\\Microsoft Office\\Office12\\winword.exe");	break;
 				case 3 : r.exec("calc.exe");	break;
-				case 4 : r.exec("cmd.exe");	System.out.println("It might not open");	break;
+				case 4 : r.exec("new String[] {"cmd", "/K", "Start"}");	System.out.println("It might not open");	break;
 				case 5 : r.exec("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe");	
 						 System.out.println("Have a patience! Chrome is opening...");	break;
 				case 6 : r.exec("C:\\Program Files\\Microsoft Office\\Office12\\EXCEL.exe");	break;
