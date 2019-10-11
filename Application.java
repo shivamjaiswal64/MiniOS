@@ -1,8 +1,8 @@
 import java.util.*;
-class Application{
+class Application {
 	public static void main(String[] args) {
 		Runtime r = Runtime.getRuntime();
-		try{
+		try {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("----Mini Operating System----");
 			System.out.println("Enter the number to open the  app ");
@@ -15,13 +15,13 @@ class Application{
 			System.out.println("7	SnippingTool");
 			System.out.println("8	Phone Dialer");
 			System.out.println("Press 0 to close this program");
-			while(true){
+			while(true) {
 			int sw = sc.nextInt();
-			switch(sw){
-				case 1 : r.exec("notepad.exe"); break;	// To open NotePad in Window
+				switch(sw) {
+				case 1 : r.exec("notepad.exe");	break;	// To open NotePad in Window
 				case 2 : r.exec("C:\\Program Files\\Microsoft Office\\Office12\\winword.exe");	break;
-				case 3 : r.exec("calc.exe");	break;
-				case 4 : r.exec("cmd.exe");	System.out.println("It might not open");	break;
+				case 3 : r.exec("calc.exe"); break;
+				case 4 : r.exec("cmd.exe /c start"); break;
 				case 5 :
 					String path = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 					try {
@@ -40,15 +40,16 @@ class Application{
 							break;
 				case 6 : r.exec("C:\\Program Files\\Microsoft Office\\Office12\\EXCEL.exe");	break;
 				case 7 : r.exec("C:\\Windows\\System32\\SnippingTool.exe"); break;
-				case 8 : r.exec("C:\\Windows\\System32\\dialer.exe");	break;
-				case 0 : System.exit(0);
+				case 8 : r.exec("C:\\Windows\\System32\\dialer.exe"); break;
+				case 0 : System.exit(0); break;
 				default : System.out.println("Enter valid number!");
-			}
+				}
 			}
 		}
+
 		catch (Exception e) {
 			System.out.println(e);
 		}
-		
+
 	}
 }
