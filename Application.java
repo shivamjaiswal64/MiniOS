@@ -35,8 +35,9 @@ class Application{
 						catch (java.io.IOException f) {
 							System.out.println("Could not find Chrome, user either does not have it installed, or it is installed in an atypical location."); break;
 						}
-						System.out.println("Have a patience! Chrome is opening...");	break;
+						System.out.println("Have a patience! Chrome is opening...");	
 					}
+							break;
 				case 6 : r.exec("C:\\Program Files\\Microsoft Office\\Office12\\EXCEL.exe");	break;
 				case 7 : r.exec("C:\\Windows\\System32\\SnippingTool.exe"); break;
 				case 8 : r.exec("C:\\Windows\\System32\\dialer.exe");	break;
