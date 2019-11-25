@@ -1,14 +1,14 @@
 # MiniOS
-<i>Some apps will be run from Java program.</i><br>
+<i>Some apps will be run from Java program using GUI</i><br>
 like 
 *NotePad<br>
 *MS Word<br>
 *Calculator<br>
 *Command Prompt<br>
-*Chrome<br>
+*Fire<br>
 *MS Excel<br>
 *SnippingTool<br>
-*Phone Dialer (Depricated)
+
 
 More Updation will be done later...
 
