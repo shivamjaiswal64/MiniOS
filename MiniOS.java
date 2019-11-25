@@ -6,7 +6,8 @@ import java.util.*;
 import java.text.SimpleDateFormat;
 import java.awt.*;
 
-/*  GO SLOW, WORK in Progress */  //version 1.02  25Nov 05:13pm
+
+/*  GO SLOW, WORK in Progress */  //version 1.03  25Nov 08:14pm
 
 public class MiniOS extends javax.swing.JFrame{
 	public MiniOS(){
@@ -15,6 +16,7 @@ public class MiniOS extends javax.swing.JFrame{
         currentDate();
 		initComponents();
 	}
+	
 	private void initComponents() {
 
         filemanage = new javax.swing.JFileChooser();
@@ -28,20 +30,48 @@ public class MiniOS extends javax.swing.JFrame{
         time = new javax.swing.JLabel();
         date = new javax.swing.JLabel();
 		
+		
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MiniOS");
         setName("MiniOS"); // NOI18N
         setSize(new java.awt.Dimension(966, 777));//setSize(new java.awt.Dimension(266, 777));
 		
-		jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/notepad.png"))); // NOI18N
+		jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/calc.png"))); // NOI18N
+		jButton1.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent evt){
+				try{
+					jButton1ActionPerformed(evt);
+				}catch(IOException ioe){ System.out.println(ioe);}
+			}
+		});
 		
-		jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/MSnotepad.jpg"))); // NOI18N
+		jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cmd.png"))); // NOI18N
+		jButton2.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent evt){
+				try{
+					jButton2ActionPerformed(evt);
+				}catch(IOException ioe){ System.out.println(ioe);}
+			}
+		});
 		
-		jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cmd40.png"))); // NOI18N
+		jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/notepad1.png"))); // NOI18N
+		jButton3.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent evt){
+				try{
+					jButton3ActionPerformed(evt);
+				}catch(IOException ioe){ System.out.println(ioe);}
+			}
+		});
 		
 		jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/SnakeGreen.png"))); // NOI18N
-		
-		jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/chrome.jpg"))); // NOI18N
+		jButton4.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent evt){
+				try{
+					jButton4ActionPerformed(evt);
+				}catch(IOException ioe){ System.out.println(ioe);}
+			}
+		});
+		jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Firefox96.png")));
 		jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt){              
 			try{
@@ -50,19 +80,19 @@ public class MiniOS extends javax.swing.JFrame{
 			}
         });
 		
-		jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/power.png"))); // NOI18N
+		jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/power.png"))); 
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                jButton6ActionPerformed(evt);
             }
         });
-		    date.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+		date.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
         date.setForeground(new java.awt.Color(255, 255, 255));
-		    time.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+		time.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
         time.setForeground(new java.awt.Color(255, 255, 255));
 		
-		    jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-		    jDesktopPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+		jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+		jDesktopPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -144,16 +174,41 @@ public class MiniOS extends javax.swing.JFrame{
 
 		 pack();
 	}
+	Runtime r = Runtime.getRuntime();
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_jButton6ActionPerformed
+			try{	r.exec("calc.exe"); System.out.println("calculator open via jb1");}
+		catch(IOException ioe){	System.out.println(ioe); } 
+	}
+	
+	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_jButton6ActionPerformed
+			try{
+				r.exec("cmd.exe /c start"); 
+				System.out.println("cmd open via jb2");
+			}
+		catch(IOException ioe){	System.out.println(ioe); } 
+	}
+	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_jButton6ActionPerformed
+			try{
+				r.exec("notepad.exe");
+				System.out.println("notepad open via jb3");	
+			}
+		catch(IOException ioe){	System.out.println(ioe); } 
+	}
+	
+	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_jButton6ActionPerformed
+			try{	r.exec("java -jar Snake.jar"); System.out.println("Snake Game open via jb4");}
+		catch(IOException ioe){	System.out.println(ioe); } 
+	}
 	
 	private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_jButton6ActionPerformed
-    //    System.out.println("Window closed by user button");
-		Runtime r = Runtime.getRuntime();
-		try{	r.exec("C:\\Windows\\System32\\dialer.exe"); }
+   
+	//	Runtime r = Runtime.getRuntime();
+		try{	r.exec("C:\\Program Files\\Mozilla Firefox\\firefox.exe");System.out.println("firefox open via jb5"); }
 		catch(IOException ioe){	System.out.println(ioe); } 
     }
 	
 	 private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        System.out.println("Window closed by user button");
+        System.out.println("Window closed by power button");
 		System.exit(0);
     }
 	
@@ -190,7 +245,7 @@ public class MiniOS extends javax.swing.JFrame{
         //    @SuppressWarnings("empty-statement")
       
         new javax.swing.Timer(1000, actiondate).start();
-    */ 
+     */ 
 	}
 	
 		
@@ -226,7 +281,7 @@ public class MiniOS extends javax.swing.JFrame{
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-	  private static javax.swing.JLabel time;
+	private static javax.swing.JLabel time;
     private static javax.swing.JDesktopPane jDesktopPane1;
 	
 }
