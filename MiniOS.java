@@ -3,13 +3,13 @@ import javax.swing.JFrame;
 import javax.swing.*;
 import java.io.*;
 import java.util.*;
+import java.text.*;
 import java.text.SimpleDateFormat;
 import java.awt.*;
-
-
-/*  GO SLOW, WORK in Progress */  //version 1.03  25Nov 08:14pm
-
-public class MiniOS extends javax.swing.JFrame{
+import java.awt.event.MouseEvent;
+/*  GO SLOW, WORK in Progress */  //version 1.04  26Nov19 04:25AM	
+		
+public class MiniOS extends javax.swing.JFrame {
 	public MiniOS(){
 		this.setUndecorated(true);
         currentTime();
@@ -18,8 +18,8 @@ public class MiniOS extends javax.swing.JFrame{
 	}
 	
 	private void initComponents() {
-
-        filemanage = new javax.swing.JFileChooser();
+	
+        jfc = new javax.swing.JFileChooser("C:\\Users\\SHIVAM JAISWAL\\Desktop");
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -29,12 +29,75 @@ public class MiniOS extends javax.swing.JFrame{
         jButton6 = new javax.swing.JButton();
         time = new javax.swing.JLabel();
         date = new javax.swing.JLabel();
+		JPopupMenu p=new JPopupMenu("Pop");
+		JMenuItem i1=new JMenuItem("New");
+		JMenuItem i2=new JMenuItem("Open File");
+		JMenuItem i3=new JMenuItem("ScreenShot");
+		JMenuItem i4=new JMenuItem("Exit");
+		p.add(i1); p.add(i2); p.add(i3); p.add(i4);
+			
+			
+			
+
 		
 		
+		
+		jDesktopPane1.addMouseListener(new java.awt.event.MouseAdapter() {  
+			public void mouseClicked(MouseEvent e)
+			{	
+			
+			int x=e.getButton();
+
+			if(x==MouseEvent.BUTTON3){
+				p.show(e.getComponent(),e.getX(),e.getY());
+				
+			}	
+			}
+		});
+		i1.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent evt){
+				try{
+					jButton3ActionPerformed(evt);
+				}catch(IOException ioe){ System.out.println(ioe);}
+			}
+		});
+		
+		i2.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent evt){
+				int x=jfc.showSaveDialog(null);		//showOpenDialog(null);
+													//showSaveDialog(null)
+				if(x==JFileChooser.APPROVE_OPTION)
+				{
+					File f=jfc.getSelectedFile();
+					String s=jfc.getName(f);
+					System.out.println(s);
+				}
+				if(x==JFileChooser.CANCEL_OPTION)
+				{
+					System.out.println("File chooser cancelled");
+				}
+			}
+	    });
+		
+		i3.addActionListener(new java.awt.event.ActionListener(){
+			public void actionPerformed(java.awt.event.ActionEvent evt){
+				try{
+				i3ActionPerformed(evt);
+				}catch(IOException ioe){System.out.println(ioe);}
+			}
+		});
+		
+		i4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               System.out.println("Window closed by Exit popup");
+			   System.exit(0);
+            }
+        });
+
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MiniOS");
         setName("MiniOS"); // NOI18N
-        setSize(new java.awt.Dimension(966, 777));//setSize(new java.awt.Dimension(266, 777));
+	   setSize(new java.awt.Dimension(966, 777));//setSize(new java.awt.Dimension(266, 777));
 		
 		jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/calc.png"))); // NOI18N
 		jButton1.addActionListener(new java.awt.event.ActionListener(){
@@ -71,7 +134,8 @@ public class MiniOS extends javax.swing.JFrame{
 				}catch(IOException ioe){ System.out.println(ioe);}
 			}
 		});
-		jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Firefox96.png")));
+		
+		jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Firefox96.png"))); // NOI18N
 		jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt){              
 			try{
@@ -80,12 +144,14 @@ public class MiniOS extends javax.swing.JFrame{
 			}
         });
 		
-		jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/power.png"))); 
+		jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/power.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                jButton6ActionPerformed(evt);
             }
         });
+		
+				
 		date.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
         date.setForeground(new java.awt.Color(255, 255, 255));
 		time.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
@@ -155,7 +221,7 @@ public class MiniOS extends javax.swing.JFrame{
                 .addGap(14, 14, 14)
                 .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
 		);
 		
@@ -183,10 +249,12 @@ public class MiniOS extends javax.swing.JFrame{
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_jButton6ActionPerformed
 			try{
 				r.exec("cmd.exe /c start"); 
+			//	r.exec("C:\\Windows\System32\\WindowsPowerShell\\v1.0\\powershell.exe");// Unable to run powershell :-(
 				System.out.println("cmd open via jb2");
 			}
 		catch(IOException ioe){	System.out.println(ioe); } 
 	}
+	
 	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_jButton6ActionPerformed
 			try{
 				r.exec("notepad.exe");
@@ -201,52 +269,54 @@ public class MiniOS extends javax.swing.JFrame{
 	}
 	
 	private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_jButton6ActionPerformed
-   
 	//	Runtime r = Runtime.getRuntime();
 		try{	r.exec("C:\\Program Files\\Mozilla Firefox\\firefox.exe");System.out.println("firefox open via jb5"); }
 		catch(IOException ioe){	System.out.println(ioe); } 
     }
 	
-	 private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+	private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         System.out.println("Window closed by power button");
 		System.exit(0);
     }
 	
+	private void i3ActionPerformed(java.awt.event.ActionEvent evt) throws IOException{
+			try{
+				r.exec("C:\\Windows\\System32\\SnippingTool.exe");
+				System.out.println("Screenshot open via i3");	
+			}
+		catch(IOException ioe){	System.out.println(ioe); } 
+	}
 	
-	    public static void currentDate(){
+	
+		public static void currentDate(){
 			System.out.println("Current date");
 			Date d = new Date();
-			SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy  EEE");
 			String strDate= s.format(d);  
 			System.out.println(strDate); 
 			
-    /*    ActionListener actiondate = (ActionEvent ae) -> {
-            Date d = new Date();
-            
-            SimpleDateFormat s = new SimpleDateFormat("dd MMMM yyyy EEEEEEEEE");
-            //   System.out.println(s.format(d));
-            date.setText(s.format(d));
-        };
-        new javax.swing.Timer(1000,actiondate ).start(); 
-	*/
+			java.awt.event.ActionListener timerListener = new java.awt.event.ActionListener(){
+				public void actionPerformed(java.awt.event.ActionEvent e)
+				{           
+					date.setText(strDate);
+				}
+			};
+			new javax.swing.Timer(1000, timerListener).start();	
 		}
+		
 		public static void currentTime(){
-			System.out.println("Current time:");
-			java.util.Date d = new Date();
-            SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss a");
-			String t = s.format(d);
-			System.out.println(t);
-	/*		 ActionListener actiondate = (ActionEvent ae) -> {
-            //hrow new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            java.util.Date mydate = new Date();
-            SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss a");
-            time.setText(s.format(mydate));
-        }; //   @Override
-        //    @SuppressWarnings("empty-statement")
-      
-        new javax.swing.Timer(1000, actiondate).start();
-     */ 
-	}
+			final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss a");
+			java.awt.event.ActionListener timerListener = new java.awt.event.ActionListener()
+			{
+				public void actionPerformed(java.awt.event.ActionEvent e)
+				{
+                Date d = new Date();
+                String t = timeFormat.format(d);
+                time.setText(t);				
+				}
+			};	
+			new javax.swing.Timer(1000, timerListener).start(); 
+		}
 	
 		
 
@@ -254,8 +324,9 @@ public class MiniOS extends javax.swing.JFrame{
 	public static void main(String a[]){
 		 try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+				if ("Nimbus".equals(info.getName())) {
+                   javax.swing.UIManager.setLookAndFeel(info.getClassName());
+				//     javax.swing.UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
                     break;
                 }
             }
@@ -265,16 +336,17 @@ public class MiniOS extends javax.swing.JFrame{
 		
 		java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MiniOS().setVisible(true);
+               MiniOS mos = new MiniOS();
+			   mos.setVisible(true);
             }
         });
 	
 	}
 	
 	
-	
+	// Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JLabel date;
-    private javax.swing.JFileChooser filemanage;
+    private javax.swing.JFileChooser jfc;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
