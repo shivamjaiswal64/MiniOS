@@ -7,7 +7,7 @@ import java.text.*;
 import java.text.SimpleDateFormat;
 import java.awt.*;
 import java.awt.event.MouseEvent;
-/*  GO SLOW, WORK in Progress */  //version 1.05  26Nov19 10:53AM	
+/*  GO SLOW, WORK in Progress */  //version 1.06  30Dec19 02:11PM	
 		
 public class MiniOS extends javax.swing.JFrame {
 	public MiniOS(){
@@ -37,11 +37,16 @@ public class MiniOS extends javax.swing.JFrame {
 		jButton12= new javax.swing.JButton();
 		jButton13= new javax.swing.JButton();
 		jButton14= new javax.swing.JButton();
-		jLabel1  = new javax.swing.JLabel("MiniOS embedded with Snake");
-		jLabel2  = new javax.swing.JLabel("Label 2");
+		jLabel1  = new javax.swing.JLabel("GUI embedded with Snake,Dice & Quiz");
+		jLabel2  = new javax.swing.JLabel("~Shivam Jaiswal");
 		
-		jLabel1.setBounds(550,50, 100,30);  
-		jLabel2.setBounds(500,100,100,30);
+		Font font1 = new Font("serif",Font.BOLD + Font.ITALIC,35);
+		Font font2 = new Font("serif", Font.ITALIC,30);
+		
+		jLabel1.setFont(font1);
+		jLabel2.setFont(font2);
+		jLabel1.setBounds(550,30, 900,50);  
+		jLabel2.setBounds(850,70,800,50);
 		jButton7.setBounds(150,33,100,100);
 		jButton8.setBounds(150,166,100,100);
 		jButton9.setBounds(150,299,100,100);
@@ -148,6 +153,7 @@ public class MiniOS extends javax.swing.JFrame {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent arg0) {
                     jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/calc96.png")));
+					jButton1.setToolTipText("Calculator");
             }
 		});			
 		
@@ -166,6 +172,7 @@ public class MiniOS extends javax.swing.JFrame {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent arg0) {
                     jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cmd96.png")));
+					jButton2.setToolTipText("Commond Prompt");
             }
 		});				 
 		
@@ -184,6 +191,7 @@ public class MiniOS extends javax.swing.JFrame {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent arg0) {
                     jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/notepad96.png")));
+					jButton3.setToolTipText("Notepad");
             }
 		});
 		
@@ -202,6 +210,7 @@ public class MiniOS extends javax.swing.JFrame {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent arg0) {
                     jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/SnakeGreen96.png")));
+					jButton4.setToolTipText("Snake Game");
             }
 		});
 		
@@ -220,6 +229,7 @@ public class MiniOS extends javax.swing.JFrame {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent arg0) {
                     jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/firefox96.png")));
+					jButton5.setToolTipText("Firefox");
             }
 		});
 		
@@ -244,7 +254,8 @@ public class MiniOS extends javax.swing.JFrame {
 			}           
             @Override
             public void mouseEntered(java.awt.event.MouseEvent arg0) {
-                    jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/excel96.png")));
+                jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/excel96.png")));
+				jButton7.setToolTipText("Excel");	
             }
 		});
 		
@@ -263,6 +274,7 @@ public class MiniOS extends javax.swing.JFrame {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent arg0) {
                     jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Dialler.png")));
+					jButton8.setToolTipText("Dialler");
             }
 		});
 
@@ -281,6 +293,7 @@ public class MiniOS extends javax.swing.JFrame {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent arg0) {
                     jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sublime.png")));
+					jButton9.setToolTipText("Sublime Text3");
             }
 		});		
 		
@@ -299,6 +312,7 @@ public class MiniOS extends javax.swing.JFrame {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent arg0) {
                     jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/vlc.png")));
+					jButton10.setToolTipText("VLC Player");
             }
 		});
 		
@@ -317,6 +331,7 @@ public class MiniOS extends javax.swing.JFrame {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent arg0) {
                     jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/quiz128.png")));
+					jButton11.setToolTipText("Johri Window Quiz");
             }
 		});
 		jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/help-.png")));
@@ -334,6 +349,7 @@ public class MiniOS extends javax.swing.JFrame {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent arg0) {
                 jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/help-128.png")));
+				jButton12.setToolTipText("Help");
             }
 		});
 		
@@ -352,6 +368,7 @@ public class MiniOS extends javax.swing.JFrame {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent arg0) {
                 jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dice96.png")));
+				jButton13.setToolTipText("Dice");
             }
 		});
 		
@@ -452,7 +469,13 @@ public class MiniOS extends javax.swing.JFrame {
 	}
 	Runtime r = Runtime.getRuntime();
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_jButton1ActionPerformed
-			try{	r.exec("calc.exe"); System.out.println("calculator open via jb1");}
+			try{	
+				r.exec("java Calc2");
+				try{
+					Thread.sleep(3000);
+				}catch(Exception e){System.out.println(e);}
+				r.exec("calc.exe");
+				System.out.println("calculator open via jb1");}
 		catch(IOException ioe){	System.out.println(ioe); } 
 	}
 	
@@ -484,7 +507,7 @@ public class MiniOS extends javax.swing.JFrame {
 		catch(IOException ioe){	System.out.println(ioe); } 
     }
 	
-	private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+	private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {					//GEN-FIRST:event_jButton6ActionPerformed
         System.out.println("Window closed by power button");
 		System.exit(0);
     }
@@ -569,7 +592,7 @@ public class MiniOS extends javax.swing.JFrame {
             }
         } catch(Exception e){
 			System.out.println(e);
-		}
+		}u
 		
 		java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -579,9 +602,6 @@ public class MiniOS extends javax.swing.JFrame {
         });
 	
 	}
-	
-	
-	// Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JLabel date;
     private javax.swing.JFileChooser jfc;
     private javax.swing.JButton jButton11,jButton12,jButton13;
@@ -591,6 +611,5 @@ public class MiniOS extends javax.swing.JFrame {
  	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabel2;
 	private static javax.swing.JLabel time;
-    private static javax.swing.JDesktopPane jDesktopPane1;
-	
+    private static javax.swing.JDesktopPane jDesktopPane1;	
 }
