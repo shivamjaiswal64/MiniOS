@@ -592,7 +592,7 @@ public class MiniOS extends javax.swing.JFrame {
             }
         } catch(Exception e){
 			System.out.println(e);
-		}u
+		}
 		
 		java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -608,8 +608,8 @@ public class MiniOS extends javax.swing.JFrame {
     private javax.swing.JButton jButton1,jButton2,jButton14;
     private javax.swing.JButton jButton3,jButton4,jButton5,jButton6;
     private javax.swing.JButton jButton7,jButton8,jButton9,jButton10;
- 	private javax.swing.JLabel jLabel1;
-	private javax.swing.JLabel jLabel2;
-	private static javax.swing.JLabel time;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private static javax.swing.JLabel time;
     private static javax.swing.JDesktopPane jDesktopPane1;	
 }
